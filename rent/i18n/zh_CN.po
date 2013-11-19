@@ -49,12 +49,12 @@ msgstr "未知"
 #: model:ir.ui.menu,name:rent.menu_rent_return
 #: view:rent.return:0
 msgid "Rent Return"
-msgstr "返还单"
+msgstr "借出还入单"
 
 #. module: rent
 #: model:product.pricelist.version,name:rent.ver0
 msgid "Default Rent Pricelist Version"
-msgstr "默认租借价格表版本"
+msgstr "默认借出价格表版本"
 
 #. module: rent
 #: field:rent.order,date_accept:0
@@ -70,18 +70,18 @@ msgstr "分组"
 #. module: rent
 #: view:rent.order:0
 msgid "Rent Order "
-msgstr "租借单"
+msgstr "借出单"
 
 #. module: rent
 #: model:ir.model,name:rent.model_rent_stock_product
 msgid "Rent Products by Partner"
-msgstr "客户租借产品"
+msgstr "客户借出产品"
 
 #. module: rent
 #: model:ir.model,name:rent.model_rent_order_line
 #: field:stock.move,rent_line_id:0
 msgid "Rent Order Line"
-msgstr "租借订单行"
+msgstr "借出订单行"
 
 #. module: rent
 #: code:addons/rent/rent_return.py:183
@@ -193,7 +193,7 @@ msgstr "税"
 #. module: rent
 #: field:product.product,is_rent:0
 msgid "Can be rented"
-msgstr "可租借"
+msgstr "可借出"
 
 #. module: rent
 #: model:ir.actions.act_window,name:rent.rent_product
@@ -218,7 +218,7 @@ msgstr "发票生成周期"
 #: field:rent.order.line,order_id:0
 #: field:rent.return.line,rent_order_id:0
 msgid "Rent Reference"
-msgstr "租借单"
+msgstr "借出单"
 
 #. module: rent
 #: help:rent.order,message_unread:0
@@ -248,7 +248,7 @@ msgstr "发票地址"
 #: model:ir.ui.menu,name:rent.menu_rent_catalog
 #: model:ir.ui.menu,name:rent.menu_rent_root
 msgid "Rents"
-msgstr "租借"
+msgstr "借出"
 
 #. module: rent
 #: model:ir.model,name:rent.model_stock_move
@@ -269,7 +269,7 @@ msgstr "Holds the Chatter summary (number of messages, ...). This summary is dir
 #. module: rent
 #: view:rent.order:0
 msgid "Rent Orders"
-msgstr "租借单"
+msgstr "借出单"
 
 #. module: rent
 #: code:addons/rent/rent.py:363
@@ -334,7 +334,7 @@ msgstr "状态"
 #: field:stock.picking.in,rent_id:0
 #: field:stock.picking.out,rent_id:0
 msgid "Rent Order"
-msgstr "租借单"
+msgstr "借出单"
 
 #. module: rent
 #: field:rent.order,message_follower_ids:0
@@ -395,7 +395,7 @@ msgstr "创建日期"
 #: field:stock.picking.in,rent_return_id:0
 #: field:stock.picking.out,rent_return_id:0
 msgid "Return Order"
-msgstr "返还单"
+msgstr "借出还入单"
 
 #. module: rent
 #: field:rent.order.line,move_ids:0
@@ -453,7 +453,7 @@ msgstr "未还数量"
 #. module: rent
 #: field:stock.warehouse,lot_rent_send_id:0
 msgid "Location Rent Send"
-msgstr "租借发运库位"
+msgstr "借出发运库位"
 
 #. module: rent
 #: field:stock.picking,rent_return_state:0
@@ -470,7 +470,7 @@ msgstr "优先级"
 #. module: rent
 #: model:ir.ui.menu,name:rent.menu_rent_stock_product
 msgid "Rent Inventory by Partner"
-msgstr "客户租借库存"
+msgstr "客户借出库存"
 
 #. module: rent
 #: field:rent.order,invoice_ids:0
@@ -487,7 +487,7 @@ msgstr "产品库存"
 #: model:ir.actions.act_window,name:rent.action_rent_stock_product
 #: model:ir.ui.menu,name:rent.menu_rent_inventory
 msgid "Rent Inventory"
-msgstr "租借库存"
+msgstr "借出库存"
 
 #. module: rent
 #: view:stock.picking.in:0
@@ -547,7 +547,7 @@ msgstr "当前库存"
 #. module: rent
 #: view:rent.return:0
 msgid "Return Order "
-msgstr "返还单"
+msgstr "借出还入单"
 
 #. module: rent
 #: code:addons/rent/rent.py:363
@@ -576,7 +576,7 @@ msgstr "草稿"
 #. module: rent
 #: view:product.product:0
 msgid "Can be Rented"
-msgstr "可租借"
+msgstr "可借出"
 
 #. module: rent
 #: field:rent.order,amount_untaxed:0
@@ -605,7 +605,7 @@ msgstr "分析当前库存"
 #: model:ir.module.category,name:rent.module_rent_category
 #: model:stock.location,name:rent.stock_location_rent
 msgid "Rent"
-msgstr "租借"
+msgstr "借出"
 
 #. module: rent
 #: field:rent.order,paid:0
@@ -661,7 +661,7 @@ msgstr "摘要"
 #. module: rent
 #: field:rent.return.line,rent_order_line_id:0
 msgid "Rent Line Reference"
-msgstr "租借单行"
+msgstr "借出单行"
 
 #. module: rent
 #: view:rent.order:0
@@ -671,7 +671,7 @@ msgstr "查看发票"
 #. module: rent
 #: field:rent.return.line,rent_order_date_order:0
 msgid "Date Rent"
-msgstr "租借日期"
+msgstr "借出日期"
 
 #. module: rent
 #: view:rent.order:0
@@ -716,7 +716,7 @@ msgstr "序列"
 #. module: rent
 #: field:stock.warehouse,lot_rent_return_id:0
 msgid "Location Rent Return"
-msgstr "租借返还库位"
+msgstr "借出还入库位"
 
 #. module: rent
 #: code:addons/rent/rent.py:212
@@ -784,7 +784,7 @@ msgstr "Cannot find a pricelist line matching this product and quantity.\n"
 #: model:product.price.type,name:rent.rent_price
 #: field:product.product,rent_price:0
 msgid "Rent Price"
-msgstr "租借价格"
+msgstr "借出价格"
 
 #. module: rent
 #: field:rent.stock.product,to_date:0
@@ -810,7 +810,7 @@ msgstr "含子客户"
 #: model:product.pricelist.type,name:rent.pricelist_type_rent
 #: field:res.partner,property_product_pricelist_rent:0
 msgid "Rent Pricelist"
-msgstr "租借价格表"
+msgstr "借出价格表"
 
 #. module: rent
 #: model:ir.model,name:rent.model_product_product
@@ -828,17 +828,17 @@ msgstr "描述"
 #. module: rent
 #: model:product.pricelist,name:rent.list0
 msgid "Default Rent Pricelist"
-msgstr "默认租借价格表"
+msgstr "默认借出价格表"
 
 #. module: rent
 #: field:stock.warehouse,lot_rent_id:0
 msgid "Location Rent"
-msgstr "租借库位"
+msgstr "借出库位"
 
 #. module: rent
 #: field:rent.order,date_return:0
 msgid "Return Date"
-msgstr "返还日期"
+msgstr "还入日期"
 
 #. module: rent
 #: view:rent.order:0
@@ -857,7 +857,7 @@ msgstr "客户"
 #. module: rent
 #: model:ir.model,name:rent.model_rent_return_line
 msgid "Rent Return Line"
-msgstr "返还单行"
+msgstr "借出还入单行"
 
 #. module: rent
 #: field:rent.order,picking_ids:0
@@ -868,7 +868,7 @@ msgstr "相关分拣单"
 #. module: rent
 #: model:ir.ui.menu,name:rent.menu_rent_product
 msgid "Rent Product"
-msgstr "租借产品"
+msgstr "借出产品"
 
 #. module: rent
 #: field:rent.order.line,product_uos:0
@@ -997,5 +997,5 @@ msgstr "归还日期"
 #: view:rent.return:0
 #: field:rent.return,order_line:0
 msgid "Return Lines"
-msgstr "返还单行"
+msgstr "借出还入单行"
 

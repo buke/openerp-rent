@@ -511,6 +511,9 @@ class rent_order(osv.osv):
         self._generate_account_invoice(cr, uid, generate_ids, context=context)
         self._generate_return_draft(cr, uid, generate_ids, context=context)
 
+    def button_dummy(self, cr, uid, ids, context=None):
+        return True
+
 
 class rent_order_line(osv.osv):
 

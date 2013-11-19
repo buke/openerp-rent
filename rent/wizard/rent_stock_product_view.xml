@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_rent_stock_product" model="ir.ui.view">
+            <field name="name">Rent Products by Partner</field>
+            <field name="model">rent.stock.product</field>
+            <field name="arch" type="xml">
+                <form string="View Stock of Products" version="7.0">
+                    <group>
+                        <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                        <field name="include_childs"/>
+                        <field name="type"/>
+                    </group>
+                    <group attrs="{'invisible':[('type', '!=', 'period')], 'required':[('type', '=', 'period')]}">
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <footer>
+                        <button name="action_open_window" string="View Products Inventory" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Rent Inventory"
+            res_model="rent.stock.product"
+            src_model="res.partner"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_rent_stock_product"/>
+
+    </data>
+</openerp>
+

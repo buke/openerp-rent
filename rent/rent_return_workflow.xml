@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Workflow definition -->
+        <record id="wkf_rent_return" model="workflow">
+            <field name="name">rent.return</field>
+            <field name="osv">rent.return</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- Workflow activity -->
+        <record id="act_return_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_return"/>
+            <field name="name">draft</field>
+            <field name="flow_start">True</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'draft'})</field>
+        </record>
+
+        <record id="act_return_confirm" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_return"/>
+            <field name="name">confirm</field>
+            <field name="kind">function</field>
+            <field name="action">return_confirm()</field>
+        </record>
+
+        <record id="act_return_accepted" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_return"/>
+            <field name="name">accepted</field>
+            <field name="kind">function</field>
+            <field name="action">return_accept()</field>
+        </record>
+
+        <record id="act_return_refused" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_return"/>
+            <field name="name">refused</field>
+            <field name="kind">function</field>
+            <field name="action">return_canceled()</field>
+        </record>
+
+        <record id="act_return_done" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_return"/>
+            <field name="name">done</field>
+            <field name="kind">function</field>
+            <field name="action">return_done()</field>
+        </record>
+
+        <!-- Workflow transition -->
+        <record id="trans_return_draft_confirm" model="workflow.transition">
+            <field name="act_from" ref="act_return_draft"/>
+            <field name="act_to" ref="act_return_confirm"/>
+            <field name="signal">confirm</field>
+        </record>
+
+        <record id="trans_return_confirm_accepted" model="workflow.transition">
+            <field name="act_from" ref="act_return_confirm"/>
+            <field name="act_to" ref="act_return_accepted"/>
+            <field name="signal">validate</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_return_confirm_refused" model="workflow.transition">
+            <field name="act_from" ref="act_return_confirm"/>
+            <field name="act_to" ref="act_return_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_return_confirm_draft" model="workflow.transition">
+            <field name="act_from" ref="act_return_confirm"/>
+            <field name="act_to" ref="act_return_draft"/>
+            <field name="signal">draft</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_return_refused_draft" model="workflow.transition">
+            <field name="act_from" ref="act_return_refused"/>
+            <field name="act_to" ref="act_return_draft"/>
+            <field name="signal">draft</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_return_accepted_done" model="workflow.transition">
+            <field name="act_from" ref="act_return_accepted"/>
+            <field name="act_to" ref="act_return_done"/>
+            <field name="signal">done</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+    </data>
+</openerp>
+

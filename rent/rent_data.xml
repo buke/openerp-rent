@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="pricelist_type_rent" model="product.pricelist.type">
+            <field name="name">Rent Pricelist</field>
+            <field name="key">rent</field>
+        </record>
+
+        <record id="list0" model="product.pricelist">
+            <field name="name">Default Rent Pricelist</field>
+            <field name="type">rent</field>
+        </record>
+
+        <record id="ver0" model="product.pricelist.version">
+            <field name="pricelist_id" ref="list0"/>
+            <field name="name">Default Rent Pricelist Version</field>
+        </record>
+        
+        <record id="item0" model="product.pricelist.item">
+            <field name="price_version_id" ref="ver0"/>
+            <field name="base" ref="rent_price"/>
+            <field name="name">Default Rent Pricelist Line</field>
+        </record>
+
+        <record forcecreate="True" id="property_product_pricelist_rent" model="ir.property">
+            <field name="name">property_product_pricelist_rent</field>
+            <field name="fields_id" search="[('model','=','res.partner'),('name','=','property_product_pricelist_rent')]"/>
+            <field eval="'product.pricelist,'+str(list0)" name="value"/>
+        </record>
+
+        <record id="journal_rent" model="stock.journal">
+            <field name="name">Rent Orders</field>
+        </record>
+
+        <record model="ir.cron" id="rent_invoice_cron">
+            <field name="name">Check Generate Rent Invoice</field>
+            <field name="interval_number">4</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="model" eval="'rent.order'"/>
+            <field name="function" eval="'cron_invoice_check'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+    </data>
+</openerp>

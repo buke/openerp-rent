@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data noupdate="1">
+        <record id="stock_location_rent" model="stock.location">
+            <field name="name">Rent</field>
+            <field name="location_id" ref="stock.stock_location_company"/>
+        </record>
+    </data>
+
+    <data noupdate="0">
+        <record id="stock.warehouse0" model="stock.warehouse">
+            <field name="lot_rent_id" ref="stock_location_rent"/>
+            <field name="lot_rent_send_id" ref="stock.stock_location_stock"/>
+            <field name="lot_rent_return_id" ref="stock.stock_location_stock"/>
+        </record>
+    </data>
+
+</openerp>

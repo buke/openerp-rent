@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Workflow definition -->
+        <record id="wkf_rent_order" model="workflow">
+            <field name="name">rent.order</field>
+            <field name="osv">rent.order</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- Workflow activity -->
+        <record id="act_rent_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_order"/>
+            <field name="name">draft</field>
+            <field name="flow_start">True</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'draft'})</field>
+        </record>
+
+        <record id="act_rent_confirm" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_order"/>
+            <field name="name">confirm</field>
+            <field name="kind">function</field>
+            <field name="action">order_confirm()</field>
+        </record>
+
+        <record id="act_rent_accepted" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_order"/>
+            <field name="name">accepted</field>
+            <field name="kind">function</field>
+            <field name="action">order_accept()</field>
+        </record>
+
+        <record id="act_rent_refused" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_order"/>
+            <field name="name">refused</field>
+            <field name="kind">function</field>
+            <field name="action">order_canceled()</field>
+        </record>
+
+        <record id="act_rent_delivered" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_order"/>
+            <field name="name">delivered</field>
+            <field name="kind">function</field>
+            <field name="action">order_delivered()</field>
+        </record>
+
+        <record id="act_rent_returned" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_order"/>
+            <field name="name">returned</field>
+            <field name="kind">function</field>
+            <field name="action">order_returned()</field>
+        </record>
+
+        <record id="act_rent_done" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_rent_order"/>
+            <field name="name">done</field>
+            <field name="kind">function</field>
+            <field name="action">order_done()</field>
+        </record>
+
+        <!-- Workflow transition -->
+        <record id="trans_rent_draft_confirm" model="workflow.transition">
+            <field name="act_from" ref="act_rent_draft"/>
+            <field name="act_to" ref="act_rent_confirm"/>
+            <field name="signal">confirm</field>
+        </record>
+
+        <record id="trans_rent_confirm_accepted" model="workflow.transition">
+            <field name="act_from" ref="act_rent_confirm"/>
+            <field name="act_to" ref="act_rent_accepted"/>
+            <field name="signal">validate</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_rent_confirm_refused" model="workflow.transition">
+            <field name="act_from" ref="act_rent_confirm"/>
+            <field name="act_to" ref="act_rent_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_rent_confirm_draft" model="workflow.transition">
+            <field name="act_from" ref="act_rent_confirm"/>
+            <field name="act_to" ref="act_rent_draft"/>
+            <field name="signal">draft</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_rent_accepted_delivered" model="workflow.transition">
+            <field name="act_from" ref="act_rent_accepted"/>
+            <field name="act_to" ref="act_rent_delivered"/>
+            <field name="signal">delivered</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_rent_delivered_returned" model="workflow.transition">
+            <field name="act_from" ref="act_rent_delivered"/>
+            <field name="act_to" ref="act_rent_returned"/>
+            <field name="signal">returned</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_rent_delivered_done" model="workflow.transition">
+            <field name="act_from" ref="act_rent_returned"/>
+            <field name="act_to" ref="act_rent_done"/>
+            <field name="signal">done</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record id="trans_rent_refused_draft" model="workflow.transition">
+            <field name="act_from" ref="act_rent_refused"/>
+            <field name="act_to" ref="act_rent_draft"/>
+            <field name="signal">draft</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+
+    </data>
+</openerp>
+

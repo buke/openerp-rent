@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_return_form" model="ir.ui.view">
+            <field name="name">rent.return.form</field>
+            <field name="model">rent.return</field>
+            <field name="arch" type="xml">
+                <form string="Rent Return" version="7.0">
+                    <header>
+                        <button name="confirm" states="draft" string="Confirm" type="workflow" class="oe_highlight" groups="rent.group_rent_user"/>
+                        <button name="validate" states="confirmed" string="Approve" type="workflow" class="oe_highlight" groups="rent.group_rent_manager"/>
+                        <button name="refuse" states="confirmed" string="Refuse" type="workflow" groups="rent.group_rent_manager" />
+                        <button name="draft" states="cancel" string="Set to Draft" type="workflow" groups="rent.group_rent_user" />
+                        <button name="action_view_picking" attrs="{'invisible': [('state','not in',('accepted','done'))]}" string="View Picking" type="object" class="oe_highlight" groups="base.group_user"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,accepted,done"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <label string="Draft " attrs="{'invisible': [('state','not in',('draft'))]}"/>
+                        <label string="Return Order " attrs="{'invisible': [('state','in',('draft'))]}"/>
+                        <field name="name" class="oe_inline" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="partner_id" on_change="onchange_partner_id(partner_id, context)" options='{"always_reload": True}'  domain="[('customer','=',True)]"/>
+                        </group>
+                        <group>
+                            <field name="date_order"/>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Return Lines">
+                            <field name="order_line">
+                                <tree string="Sales Order Lines" editable="bottom" create="false">
+                                    <field name="rent_order_date_order"/>
+                                    <field name="rent_order_id"/>
+                                    <field name="name"/>
+                                    <field name="product_id"/>
+                                    <field name="product_uom"/>
+                                    <field name="product_rent_qty"/>
+                                    <field name="product_uom_qty" sum="Total" on_change="onchange_product_uom_qty(product_uom_qty, product_rent_qty, context)"/>
+                                    <field name="state" invisible="1"/>                               
+                                </tree>
+                            </field>
+                            <div class="oe_clear"/>
+                            <field name="note" class="oe_inline" placeholder="Note..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='view_return_search'>
+            <field name="name">rent.return.search</field>
+            <field name="model">rent.return</field>
+            <field name="arch" type="xml">
+                <search string="Rent Return" >
+                    <field name="partner_id" />
+                    <field name="date_order"/>
+                    <field name="state"/>
+                    <filter name="state_draft" domain="[('state','=','draft')]" string="Draft"/>
+                    <filter name="state_confirmed" domain="[('state','=','confirmed')]" string="Waiting Approval"/>
+                    <filter name="state_accepted" domain="[('state','=','accepted')]" string="Waiting Delivery"/>
+                    <filter name="state_done" domain="[('state','=','done')]" string="Done"/>
+                    <group expand="1" string="Group By...">
+                        <filter name="groupby_year" context="{'group_by' : 'year'}" string="Year"/>
+                        <filter name="groupby_date" context="{'group_by' : 'date_order'}" string="Date"/>
+                        <filter name="groupby_state" context="{'group_by' : 'state'}" string="State"/>
+                        <filter name="groupby_partner_id" context="{'group_by' : 'partner_id'}" string="Partner"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_return_tree" model="ir.ui.view">
+            <field name="name">rent.return.tree</field>
+            <field name="model">rent.return</field>
+            <field name="arch" type="xml">
+                <tree string="Rent Return" fonts="bold:message_unread==True" colors="grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except')">
+                    <field name="message_unread" invisible="1"/>
+                    <field name="name" string="Order Number"/>
+                    <field name="date_order"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="rent_return_action" model="ir.actions.act_window">
+            <field name="name">Rent Return</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rent.return</field>
+            <field name="context">{}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+ 
+        <menuitem action="rent_return_action" id="menu_rent_return" parent="menu_rent_catalog" sequence="10" name="Rent Return"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_warehouse" model="ir.ui.view">
+            <field name="name">stock.warehouse</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_output_id']" position="after">
+                    <field name="lot_rent_id"/>
+                    <field name="lot_rent_send_id"/>
+                    <field name="lot_rent_return_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_in_form" model="ir.ui.view">
+            <field name="name">stock.picking.in.form</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="rent_state" invisible="1"  />
+                    <field name="rent_return_state" invisible="1"  />
+                </xpath>
+                <xpath expr="/form/header//button[@name='%(stock.act_stock_return_picking)d']" position="replace">
+                    <button name="%(stock.act_stock_return_picking)d" string="Return Products" type="action" attrs="{'invisible': ['|', ('state','not in',['done']), '|', ('rent_state','in',['returned','done']), ('rent_return_state','in',['done'])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_out_form" model="ir.ui.view">
+            <field name="name">stock.picking.out.form</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="rent_state" invisible="1"  />
+                    <field name="rent_return_state" invisible="1"  />
+                </xpath>
+                <xpath expr="/form/header//button[@name='%(stock.act_stock_return_picking)d']" position="replace">
+                    <button name="%(stock.act_stock_return_picking)d" string="Return Products" type="action" attrs="{'invisible': ['|', ('state','not in',['done']), '|', ('rent_state','in',['returned','done']), ('rent_return_state','in',['done'])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_rent_inventory_catalog" name="Inventory" parent="menu_rent_root"  sequence="20"/>
+        <record id="action_rent_inventory" model="ir.actions.act_window">
+            <field name="name">Rent Inventory</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context" eval="{'location':ref('rent.stock_location_rent')}"/>
+            <field name="domain">[('type','!=','service'),('is_rent','=',True)]</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+        </record>
+        <menuitem id="menu_rent_inventory" name="Rent Inventory" parent="menu_rent_inventory_catalog" action="action_rent_inventory"/>
+
+        <menuitem id="menu_rent_stock_product" name="Rent Inventory by Partner" parent="rent.menu_rent_inventory_catalog" action="action_rent_stock_product"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Top menu item -->
+        <menuitem name="Rents" id="menu_rent_root" sequence="35" groups="rent.group_rent_user,rent.group_rent_manager"
+/>
+        <!-- Menu Group -->
+        <menuitem id="menu_rent_catalog" parent="menu_rent_root" name="Rents" sequence="0"/>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">rent.order.form</field>
+            <field name="model">rent.order</field>
+            <field name="arch" type="xml">
+                <form string="Rent Order" version="7.0">
+                    <header>
+                        <button name="confirm" states="draft" string="Confirm" type="workflow" class="oe_highlight" groups="rent.group_rent_user"/>
+                        <button name="validate" states="confirmed" string="Approve" type="workflow" class="oe_highlight" groups="rent.group_rent_manager"/>
+                        <button name="refuse" states="confirmed" string="Refuse" type="workflow" groups="rent.group_rent_manager" />
+                        <button name="draft" states="cancel" string="Set to Draft" type="workflow" groups="rent.group_rent_user" />
+                        <button name="action_view_picking" attrs="{'invisible': [('state','not in',('accepted','delivered','returned','done'))]}" string="View Picking" type="object" class="oe_highlight" groups="base.group_user"/>
+                        <button name="action_view_invoice" attrs="{'invisible': ['|', ('state','not in',['delivered','returned','done']), ('invoiced','=',False)]}" string="View Invoice" type="object" class="oe_highlight" groups="base.group_user"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,accepted,delivered,returned,done"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <label string="Draft " attrs="{'invisible': [('state','not in',('draft'))]}"/>
+                        <label string="Rent Order " attrs="{'invisible': [('state','in',('draft'))]}"/>
+                        <field name="name" class="oe_inline" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="partner_id" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}"/>
+                            <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}"/>
+                            <field name="project_id" context="{'partner_id':partner_invoice_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['view','normal','contract'])]"/>
+                        </group>
+                        <group>
+                            <field name="date_order"/>
+                            <field name="date_return_plan"/>
+                            <field name="invoice_frequency"/>
+                            <field name="invoiced" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="order_line">
+                                <tree string="Order Lines" editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="state" invisible="1"/>
+                                    <field name="th_weight" invisible="1"/>
+                                    <field name="product_id"
+                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'shop':parent.shop_id, 'uom':product_uom}"
+                                        groups="base.group_user" 
+                                        on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty"
+                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'shop':parent.shop_id, 'uom':product_uom}"
+                                        on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
+                                    <field name="product_uom"
+                                        on_change="product_uom_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, context)"
+                                        groups="product.group_uom" options='{"no_open": True}'/>
+                                    <field name="product_uos_qty" groups="product.group_uos" invisible="1"/>
+                                    <field name="product_uos" string="UoS" groups="product.group_uos" invisible="1"/>
+                                    <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal"/>
+                                    <field name="product_rent_qty"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="amount_total" />
+                                    <button name="button_dummy"
+                                        states="draft,sent" string="(update)" type="object" class="oe_edit_only oe_link"/>
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <div class="oe_clear"/>
+                            <field name="note" class="oe_inline" placeholder="Note"/>
+                        </page>
+                        <page string="Other Information" groups="base.group_user">
+                            <group>
+                                <group name="sales_person" groups="base.group_user">
+                                    <field name="shop_id" groups="base.group_no_one" on_change="onchange_shop_id(shop_id, context)" widget="selection"/>
+                                    <field name="client_order_ref"/>
+                                    <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="user_id"/>
+                                    <field groups="base.group_no_one" name="origin"/>
+                                </group>
+                                <group name="sale_pay">
+                                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                                    <field name="journal_id" domain="[('type','=','sale')]"/>
+                                    <field name="fiscal_position" widget="selection"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_order_tree" model="ir.ui.view">
+            <field name="name">rent.order.tree</field>
+            <field name="model">rent.order</field>
+            <field name="arch" type="xml">
+                <tree string="Rent Orders" fonts="bold:message_unread==True" colors="grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except')">
+                    <field name="message_unread" invisible="1"/>
+                    <field name="name" string="Order Number"/>
+                    <field name="date_order"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="amount_total" sum="Total Tax Included"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='view_order_search'>
+            <field name="name">rent.order.search</field>
+            <field name="model">rent.order</field>
+            <field name="arch" type="xml">
+                <search string="Rent Order" >
+                    <field name="partner_id" />
+                    <field name="date_order"/>
+                    <field name="state"/>
+                    <filter name="state_draft" domain="[('state','=','draft')]" string="Draft"/>
+                    <filter name="state_confirmed" domain="[('state','=','confirmed')]" string="Waiting Approval"/>
+                    <filter name="state_accepted" domain="[('state','=','accepted')]" string="Waiting Delivery"/>
+                    <filter name="state_delivered" domain="[('state','=','delivered')]" string="Delivered"/>
+                    <filter name="state_returned" domain="[('state','=','returned')]" string="Returned"/>
+                    <filter name="state_done" domain="[('state','=','done')]" string="Done"/>
+                    <group expand="1" string="Group By...">
+                        <filter name="groupby_year" context="{'group_by' : 'year'}" string="Year"/>
+                        <filter name="groupby_date" context="{'group_by' : 'date_order'}" string="Date"/>
+                        <filter name="groupby_state" context="{'group_by' : 'state'}" string="State"/>
+                        <filter name="groupby_partner_id" context="{'group_by' : 'partner_id'}" string="Partner"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="rent_order_action" model="ir.actions.act_window">
+            <field name="name">Rent Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rent.order</field>
+            <field name="context">{}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="rent_order_action" id="menu_rent_order" parent="menu_rent_catalog" sequence="0" name="Rent Order"/>
+
+        <act_window
+           id="act_res_partner_rent_order"
+           name="Rent Order"
+           context="{'default_partner_id': active_id, 'search_default_partner_id': [active_id], 'search_default_groupby_state': 1}"
+           domain="[('partner_id','=', active_id)]"
+           res_model="rent.order"
+           src_model="res.partner"/>
+
+        <menuitem id="menu_rent_partner" name="Customers" parent="menu_rent_catalog" action="base.action_partner_form" sequence="50"/>
+
+
+        <menuitem id="menu_rent_config" parent="menu_rent_root" name="Configuration" sequence="100" groups="rent.group_rent_manager"/>
+
+        <record id="action_product_pricelist_rent" model="ir.actions.act_window">
+            <field name="name">Pricelists</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricelist</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="product.product_pricelist_view_search" />
+            <field name="context">{"default_type":"rent", "search_default_type":"rent"}</field>
+        </record>
+        <menuitem id="menu_product_pricelist_rent" action="action_product_pricelist_rent" parent="menu_rent_config" sequence="10" groups="rent.group_rent_manager" />
+
+        <record id="action_pricelist_version_rent" model="ir.actions.act_window">
+            <field name="name">Pricelist Versions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricelist.version</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="product.product_pricelist_version_tree_view"/>
+            <field name="domain">[('pricelist_id.type','=','rent')]</field>
+        </record>
+        <menuitem id="menu_pricelist_version_rent" action="action_pricelist_version_rent" parent="menu_rent_config" sequence="20" groups="rent.group_rent_manager" />
+
+        <menuitem id="menu_product_price_type_rent" action="product.product_price_type_action" parent="menu_rent_config" sequence="30" groups="rent.group_rent_manager" />
+
+
+    </data>
+</openerp>

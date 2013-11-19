@@ -1,0 +1,1001 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* rent
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20131111-002527\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-16 08:15+0000\n"
+"PO-Revision-Date: 2013-11-16 08:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rent
+#: field:rent.return,user_id:0
+msgid "Receive person"
+msgstr "接收人"
+
+#. module: rent
+#: code:addons/rent/rent.py:590
+#, python-format
+msgid "No Customer Defined!"
+msgstr "未定义客户"
+
+#. module: rent
+#: field:rent.stock.product,type:0
+msgid "Analyse Type"
+msgstr "分析库存"
+
+#. module: rent
+#: selection:rent.order,invoice_frequency:0
+msgid "Monthly"
+msgstr "每月"
+
+#. module: rent
+#: code:addons/rent/rent.py:72
+#: code:addons/rent/rent_return.py:36
+#, python-format
+msgid "Unknown"
+msgstr "未知"
+
+#. module: rent
+#: model:ir.actions.act_window,name:rent.rent_return_action
+#: model:ir.model,name:rent.model_rent_return
+#: model:ir.ui.menu,name:rent.menu_rent_return
+#: view:rent.return:0
+msgid "Rent Return"
+msgstr "返还单"
+
+#. module: rent
+#: model:product.pricelist.version,name:rent.ver0
+msgid "Default Rent Pricelist Version"
+msgstr "默认租借价格表版本"
+
+#. module: rent
+#: field:rent.order,date_accept:0
+msgid "Confirmation Date"
+msgstr "确认日期"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "Group By..."
+msgstr "分组"
+
+#. module: rent
+#: view:rent.order:0
+msgid "Rent Order "
+msgstr "租借单"
+
+#. module: rent
+#: model:ir.model,name:rent.model_rent_stock_product
+msgid "Rent Products by Partner"
+msgstr "客户租借产品"
+
+#. module: rent
+#: model:ir.model,name:rent.model_rent_order_line
+#: field:stock.move,rent_line_id:0
+msgid "Rent Order Line"
+msgstr "租借订单行"
+
+#. module: rent
+#: code:addons/rent/rent_return.py:183
+#, python-format
+msgid "Line can not be empty."
+msgstr "订单行不能为空"
+
+#. module: rent
+#: field:rent.order,message_unread:0
+#: field:rent.return,message_unread:0
+msgid "Unread Messages"
+msgstr "未读信息"
+
+#. module: rent
+#: field:rent.order,company_id:0
+#: field:rent.order.line,company_id:0
+#: field:rent.return,company_id:0
+#: field:rent.return.line,company_id:0
+msgid "Company"
+msgstr "公司"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "Set to Draft"
+msgstr "设为草稿"
+
+#. module: rent
+#: view:rent.order:0
+#: selection:rent.order,state:0
+#: view:rent.return:0
+#: selection:rent.return,state:0
+#: selection:rent.return.line,state:0
+msgid "Waiting Delivery"
+msgstr "等待发货"
+
+#. module: rent
+#: field:rent.order,user_id:0
+#: field:rent.order.line,salesman_id:0
+msgid "Salesperson"
+msgstr "销售员"
+
+#. module: rent
+#: code:addons/rent/stock.py:115
+#, python-format
+msgid "You may only return rent pickings that are not Returned or Done!"
+msgstr "此单不能退货！"
+
+#. module: rent
+#: field:rent.order,partner_shipping_id:0
+msgid "Delivery Address"
+msgstr "发运地址"
+
+#. module: rent
+#: field:rent.order,date_delivered:0
+msgid "Delivered Date"
+msgstr "发运日期"
+
+#. module: rent
+#: field:rent.order.line,price_subtotal:0
+msgid "Subtotal"
+msgstr "小计"
+
+#. module: rent
+#: selection:rent.order.line,state:0
+msgid "Approved"
+msgstr "批准"
+
+#. module: rent
+#: selection:rent.stock.product,type:0
+msgid "Analyse a Period"
+msgstr "统计一个周期"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "Refuse"
+msgstr "拒绝"
+
+#. module: rent
+#: field:rent.order.line,product_uom:0
+#: field:rent.return.line,product_uom:0
+msgid "Unit of Measure "
+msgstr "单位"
+
+#. module: rent
+#: selection:rent.order,invoice_frequency:0
+msgid "Yearly"
+msgstr "每年"
+
+#. module: rent
+#: field:rent.order,message_ids:0
+#: field:rent.return,message_ids:0
+msgid "Messages"
+msgstr "消息"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "View Picking"
+msgstr "查看分拣单"
+
+#. module: rent
+#: field:rent.order,amount_tax:0
+#: field:rent.order.line,tax_id:0
+msgid "Taxes"
+msgstr "税"
+
+#. module: rent
+#: field:product.product,is_rent:0
+msgid "Can be rented"
+msgstr "可租借"
+
+#. module: rent
+#: model:ir.actions.act_window,name:rent.rent_product
+#: model:ir.ui.menu,name:rent.menu_rent_product_catalog
+msgid "Products"
+msgstr "产品"
+
+#. module: rent
+#: selection:rent.order,state:0
+#: selection:rent.order.line,state:0
+#: selection:rent.return,state:0
+#: selection:rent.return.line,state:0
+msgid "Cancelled"
+msgstr "取消"
+
+#. module: rent
+#: field:rent.order,invoice_frequency:0
+msgid "Recurring Invoice Frequency"
+msgstr "发票生成周期"
+
+#. module: rent
+#: field:rent.order.line,order_id:0
+#: field:rent.return.line,rent_order_id:0
+msgid "Rent Reference"
+msgstr "租借单"
+
+#. module: rent
+#: help:rent.order,message_unread:0
+#: help:rent.return,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "新消息提醒"
+
+#. module: rent
+#: code:addons/rent/stock.py:118
+#, python-format
+msgid "Rent return pickings can not be returned!"
+msgstr "此单不能退货"
+
+#. module: rent
+#: field:rent.order,shop_id:0
+#: field:rent.return,shop_id:0
+msgid "Shop"
+msgstr "商店"
+
+#. module: rent
+#: field:rent.order,partner_invoice_id:0
+msgid "Invoice Address"
+msgstr "发票地址"
+
+#. module: rent
+#: field:account.invoice,rent_ids:0
+#: model:ir.ui.menu,name:rent.menu_rent_catalog
+#: model:ir.ui.menu,name:rent.menu_rent_root
+msgid "Rents"
+msgstr "租借"
+
+#. module: rent
+#: model:ir.model,name:rent.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: rent
+#: field:rent.return,date_accept:0
+msgid "Approval Date"
+msgstr "批准日期"
+
+#. module: rent
+#: help:rent.order,message_summary:0
+#: help:rent.return,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: rent
+#: view:rent.order:0
+msgid "Rent Orders"
+msgstr "租借单"
+
+#. module: rent
+#: code:addons/rent/rent.py:363
+#, python-format
+msgid "Order Line can not be empty."
+msgstr "订单行不能为空"
+
+#. module: rent
+#: code:addons/rent/rent.py:259
+#, python-format
+msgid "Please define sales journal for this company: \"%s\" (id:%d)."
+msgstr "请定义此公司的销售日记账: \"%s\" (id:%d)."
+
+#. module: rent
+#: model:ir.model,name:rent.model_res_partner
+#: view:rent.order:0
+#: view:rent.return:0
+#: field:rent.return.line,partner_id:0
+msgid "Partner"
+msgstr "业务伙伴"
+
+#. module: rent
+#: model:ir.model,name:rent.model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "送货单"
+
+#. module: rent
+#: field:rent.order.line,product_uos_qty:0
+#: field:rent.return.line,product_uos_qty:0
+msgid "Quantity (UoS)"
+msgstr "数量"
+
+#. module: rent
+#: selection:rent.order,invoice_frequency:0
+msgid "Weekly"
+msgstr "每周"
+
+#. module: rent
+#: field:rent.stock.product,from_date:0
+msgid "From"
+msgstr "从"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "Confirm"
+msgstr "确认"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "State"
+msgstr "状态"
+
+#. module: rent
+#: model:ir.actions.act_window,name:rent.act_res_partner_rent_order
+#: model:ir.actions.act_window,name:rent.rent_order_action
+#: model:ir.model,name:rent.model_rent_order
+#: model:ir.ui.menu,name:rent.menu_rent_order
+#: view:rent.order:0
+#: field:stock.picking,rent_id:0
+#: field:stock.picking.in,rent_id:0
+#: field:stock.picking.out,rent_id:0
+msgid "Rent Order"
+msgstr "租借单"
+
+#. module: rent
+#: field:rent.order,message_follower_ids:0
+#: field:rent.return,message_follower_ids:0
+msgid "Followers"
+msgstr "关注"
+
+#. module: rent
+#: model:ir.ui.menu,name:rent.menu_rent_inventory_catalog
+msgid "Inventory"
+msgstr "库存"
+
+#. module: rent
+#: model:ir.model,name:rent.model_stock_picking
+msgid "Picking List"
+msgstr "分拣单"
+
+#. module: rent
+#: model:ir.model,name:rent.model_stock_warehouse
+msgid "Warehouse"
+msgstr "仓库"
+
+#. module: rent
+#: view:rent.order:0
+#: field:rent.order,order_line:0
+msgid "Order Lines"
+msgstr "订单行"
+
+#. module: rent
+#: code:addons/rent/rent.py:270
+#, python-format
+msgid "Please define income account for this product: \"%s\" (id:%d)."
+msgstr "请为此产品定义入库科目: \"%s\" (id:%d)."
+
+#. module: rent
+#: field:rent.order.line,invoice_lines:0
+msgid "Invoice Lines"
+msgstr "发票行"
+
+#. module: rent
+#: model:ir.actions.act_window,name:rent.action_product_pricelist_rent
+#: model:ir.ui.menu,name:rent.menu_product_pricelist_rent
+msgid "Pricelists"
+msgstr "价格表"
+
+#. module: rent
+#: field:rent.order,date_return_plan:0
+msgid "Plan Return Date"
+msgstr "计划归还日期"
+
+#. module: rent
+#: field:rent.order,create_date:0
+msgid "Creation Date"
+msgstr "创建日期"
+
+#. module: rent
+#: field:stock.picking,rent_return_id:0
+#: field:stock.picking.in,rent_return_id:0
+#: field:stock.picking.out,rent_return_id:0
+msgid "Return Order"
+msgstr "返还单"
+
+#. module: rent
+#: field:rent.order.line,move_ids:0
+msgid "Inventory Moves"
+msgstr "库存移动"
+
+#. module: rent
+#: field:rent.order,name:0
+#: field:rent.return,name:0
+msgid "Order Reference"
+msgstr "源单据"
+
+#. module: rent
+#: view:rent.order:0
+msgid "Other Information"
+msgstr "其他信息"
+
+#. module: rent
+#: field:rent.order,pricelist_id:0
+msgid "Pricelist"
+msgstr "价格表"
+
+#. module: rent
+#: model:ir.ui.menu,name:rent.menu_rent_config
+msgid "Configuration"
+msgstr "设置"
+
+#. module: rent
+#: code:addons/rent/rent.py:685
+#, python-format
+msgid "Configuration Error!"
+msgstr "配置错误"
+
+#. module: rent
+#: view:rent.order:0
+msgid "UoS"
+msgstr "销售单位"
+
+#. module: rent
+#: selection:rent.order,invoice_frequency:0
+msgid "Daily"
+msgstr "每天"
+
+#. module: rent
+#: view:rent.order:0
+msgid "(update)"
+msgstr "(更新)"
+
+#. module: rent
+#: field:rent.order.line,product_rent_qty:0
+#: field:rent.return.line,product_rent_qty:0
+msgid "Rent Quantity"
+msgstr "未还数量"
+
+#. module: rent
+#: field:stock.warehouse,lot_rent_send_id:0
+msgid "Location Rent Send"
+msgstr "租借发运库位"
+
+#. module: rent
+#: field:stock.picking,rent_return_state:0
+#: field:stock.picking.in,rent_return_state:0
+#: field:stock.picking.out,rent_return_state:0
+msgid "Rent Return State"
+msgstr "返回状态"
+
+#. module: rent
+#: field:rent.order.line,th_weight:0
+msgid "Weight"
+msgstr "优先级"
+
+#. module: rent
+#: model:ir.ui.menu,name:rent.menu_rent_stock_product
+msgid "Rent Inventory by Partner"
+msgstr "客户租借库存"
+
+#. module: rent
+#: field:rent.order,invoice_ids:0
+msgid "Invoices"
+msgstr "发票"
+
+#. module: rent
+#: view:rent.stock.product:0
+msgid "View Stock of Products"
+msgstr "产品库存"
+
+#. module: rent
+#: model:ir.actions.act_window,name:rent.action_rent_inventory
+#: model:ir.actions.act_window,name:rent.action_rent_stock_product
+#: model:ir.ui.menu,name:rent.menu_rent_inventory
+msgid "Rent Inventory"
+msgstr "租借库存"
+
+#. module: rent
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Return Products"
+msgstr "退货产品"
+
+#. module: rent
+#: field:rent.order,currency_id:0
+msgid "Currency"
+msgstr "货币"
+
+#. module: rent
+#: code:addons/rent/rent.py:667
+#, python-format
+msgid "You have to select a pricelist or a customer in the sales form !\n"
+"Please set one before choosing a product."
+msgstr "You have to select a pricelist or a customer in the sales form !\n"
+"Please set one before choosing a product."
+
+#. module: rent
+#: view:rent.order:0
+#: selection:rent.order,state:0
+#: selection:rent.order.line,state:0
+#: view:rent.return:0
+#: selection:rent.return,state:0
+#: selection:rent.return.line,state:0
+msgid "Waiting Approval"
+msgstr "待批"
+
+#. module: rent
+#: view:rent.stock.product:0
+msgid "or"
+msgstr "或"
+
+#. module: rent
+#: field:rent.order,invoiced:0
+msgid "Invoiced"
+msgstr "已开票"
+
+#. module: rent
+#: field:rent.order,invoice_frequency_time:0
+msgid "invoice_frequency_time"
+msgstr "发票生成时间"
+
+#. module: rent
+#: field:rent.order,origin:0
+msgid "Source Document"
+msgstr "源单据"
+
+#. module: rent
+#: code:addons/rent/wizard/rent_stock_product.py:55
+#, python-format
+msgid "Current Inventory"
+msgstr "当前库存"
+
+#. module: rent
+#: view:rent.return:0
+msgid "Return Order "
+msgstr "返还单"
+
+#. module: rent
+#: code:addons/rent/rent.py:363
+#: code:addons/rent/rent_return.py:183
+#, python-format
+msgid "No Lines!"
+msgstr "订单行为空"
+
+#. module: rent
+#: view:rent.order:0
+#: field:rent.order,note:0
+#: field:rent.return,note:0
+msgid "Note"
+msgstr "备注"
+
+#. module: rent
+#: view:rent.order:0
+#: selection:rent.order,state:0
+#: selection:rent.order.line,state:0
+#: view:rent.return:0
+#: selection:rent.return,state:0
+#: selection:rent.return.line,state:0
+msgid "Draft"
+msgstr "草稿"
+
+#. module: rent
+#: view:product.product:0
+msgid "Can be Rented"
+msgstr "可租借"
+
+#. module: rent
+#: field:rent.order,amount_untaxed:0
+msgid "Untaxed Amount"
+msgstr "不含税总计"
+
+#. module: rent
+#: field:rent.order,state:0
+#: field:rent.order.line,state:0
+#: field:rent.return,state:0
+#: field:rent.return.line,state:0
+msgid "Status"
+msgstr "状态"
+
+#. module: rent
+#: model:ir.ui.menu,name:rent.menu_rent_partner
+msgid "Customers"
+msgstr "客户"
+
+#. module: rent
+#: selection:rent.stock.product,type:0
+msgid "Analyse Current Inventory"
+msgstr "分析当前库存"
+
+#. module: rent
+#: model:ir.module.category,name:rent.module_rent_category
+#: model:stock.location,name:rent.stock_location_rent
+msgid "Rent"
+msgstr "租借"
+
+#. module: rent
+#: field:rent.order,paid:0
+msgid "Paid"
+msgstr "已付款"
+
+#. module: rent
+#: field:rent.order,message_is_follower:0
+#: field:rent.return,message_is_follower:0
+msgid "Is a Follower"
+msgstr "关注"
+
+#. module: rent
+#: code:addons/rent/rent.py:211
+#, python-format
+msgid "Pricelist Warning!"
+msgstr "价格表警告"
+
+#. module: rent
+#: field:rent.return.line,order_id:0
+msgid "Rent Return Reference"
+msgstr "归还单"
+
+#. module: rent
+#: view:rent.order:0
+#: field:rent.order,date_order:0
+#: view:rent.return:0
+#: field:rent.return,date_order:0
+msgid "Date"
+msgstr "日期"
+
+#. module: rent
+#: model:res.groups,name:rent.group_rent_user
+msgid "User"
+msgstr "用户"
+
+#. module: rent
+#: view:rent.order:0
+#: selection:rent.order,state:0
+#: selection:rent.order.line,state:0
+#: view:rent.return:0
+#: selection:rent.return,state:0
+#: selection:rent.return.line,state:0
+msgid "Done"
+msgstr "完成"
+
+#. module: rent
+#: field:rent.order,message_summary:0
+#: field:rent.return,message_summary:0
+msgid "Summary"
+msgstr "摘要"
+
+#. module: rent
+#: field:rent.return.line,rent_order_line_id:0
+msgid "Rent Line Reference"
+msgstr "租借单行"
+
+#. module: rent
+#: view:rent.order:0
+msgid "View Invoice"
+msgstr "查看发票"
+
+#. module: rent
+#: field:rent.return.line,rent_order_date_order:0
+msgid "Date Rent"
+msgstr "租借日期"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "Draft "
+msgstr "草稿 "
+
+#. module: rent
+#: code:addons/rent/rent.py:680
+#, python-format
+msgid "No valid pricelist line found ! :"
+msgstr "无效的价格表行"
+
+#. module: rent
+#: field:rent.order.line,product_uom_qty:0
+msgid "Quantity"
+msgstr "数量"
+
+#. module: rent
+#: view:rent.stock.product:0
+msgid "View Products Inventory"
+msgstr "查看产品库存"
+
+#. module: rent
+#: model:ir.ui.menu,name:rent.menu_product_price_type_rent
+msgid "Price Types"
+msgstr "计价基础"
+
+#. module: rent
+#: code:addons/rent/rent.py:85
+#: code:addons/rent/rent_return.py:43
+#, python-format
+msgid "There is no default shop for the current user's company!"
+msgstr "当前公司未定义商店"
+
+#. module: rent
+#: field:rent.order.line,sequence:0
+#: field:rent.return.line,sequence:0
+msgid "Sequence"
+msgstr "序列"
+
+#. module: rent
+#: field:stock.warehouse,lot_rent_return_id:0
+msgid "Location Rent Return"
+msgstr "租借返还库位"
+
+#. module: rent
+#: code:addons/rent/rent.py:212
+#, python-format
+msgid "If you change the pricelist of this order (and eventually the currency), prices of existing order lines will not be updated."
+msgstr "If you change the pricelist of this order (and eventually the currency), prices of existing order lines will not be updated."
+
+#. module: rent
+#: field:rent.order,fiscal_position:0
+msgid "Fiscal Position"
+msgstr "财务结构"
+
+#. module: rent
+#: field:rent.order,plan_invoiced:0
+msgid "Plan Invoiced"
+msgstr "是否已生成归还单草稿"
+
+#. module: rent
+#: model:ir.model,name:rent.model_account_invoice
+msgid "Invoice"
+msgstr "发票"
+
+#. module: rent
+#: view:rent.stock.product:0
+msgid "Cancel"
+msgstr "取消"
+
+#. module: rent
+#: model:ir.model,name:rent.model_stock_return_picking
+msgid "Return Picking"
+msgstr "退回分拣"
+
+#. module: rent
+#: code:addons/rent/rent.py:669
+#, python-format
+msgid "No Pricelist ! : "
+msgstr "未定义价格表"
+
+#. module: rent
+#: sql_constraint:rent.order:0
+msgid "Order Reference must be unique per Company!"
+msgstr "名称必须唯一"
+
+#. module: rent
+#: view:rent.order:0
+#: selection:rent.order,state:0
+#: selection:rent.return.line,state:0
+msgid "Delivered"
+msgstr "已发运"
+
+#. module: rent
+#: model:ir.model,name:rent.model_stock_picking_in
+msgid "Incoming Shipments"
+msgstr "入库"
+
+#. module: rent
+#: code:addons/rent/rent.py:677
+#, python-format
+msgid "Cannot find a pricelist line matching this product and quantity.\n"
+"You have to change either the product, the quantity or the pricelist."
+msgstr "Cannot find a pricelist line matching this product and quantity.\n"
+"You have to change either the product, the quantity or the pricelist."
+
+#. module: rent
+#: model:product.price.type,name:rent.rent_price
+#: field:product.product,rent_price:0
+msgid "Rent Price"
+msgstr "租借价格"
+
+#. module: rent
+#: field:rent.stock.product,to_date:0
+msgid "To"
+msgstr "到"
+
+#. module: rent
+#: field:rent.return,reference:0
+msgid "Ref"
+msgstr "引用"
+
+#. module: rent
+#: field:rent.order.line,price_unit:0
+msgid "Unit Price"
+msgstr "单价"
+
+#. module: rent
+#: field:rent.stock.product,include_childs:0
+msgid "Include Childs"
+msgstr "含子客户"
+
+#. module: rent
+#: model:product.pricelist.type,name:rent.pricelist_type_rent
+#: field:res.partner,property_product_pricelist_rent:0
+msgid "Rent Pricelist"
+msgstr "租借价格表"
+
+#. module: rent
+#: model:ir.model,name:rent.model_product_product
+#: field:rent.order.line,product_id:0
+#: field:rent.return.line,product_id:0
+msgid "Product"
+msgstr "产品"
+
+#. module: rent
+#: field:rent.order.line,name:0
+#: field:rent.return.line,name:0
+msgid "Description"
+msgstr "描述"
+
+#. module: rent
+#: model:product.pricelist,name:rent.list0
+msgid "Default Rent Pricelist"
+msgstr "默认租借价格表"
+
+#. module: rent
+#: field:stock.warehouse,lot_rent_id:0
+msgid "Location Rent"
+msgstr "租借库位"
+
+#. module: rent
+#: field:rent.order,date_return:0
+msgid "Return Date"
+msgstr "返还日期"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "Order Number"
+msgstr "订单号码"
+
+#. module: rent
+#: field:rent.order,partner_id:0
+#: field:rent.order.line,order_partner_id:0
+#: field:rent.return,partner_id:0
+#: field:rent.stock.product,partner_id:0
+msgid "Customer"
+msgstr "客户"
+
+#. module: rent
+#: model:ir.model,name:rent.model_rent_return_line
+msgid "Rent Return Line"
+msgstr "返还单行"
+
+#. module: rent
+#: field:rent.order,picking_ids:0
+#: field:rent.return,picking_ids:0
+msgid "Related Picking"
+msgstr "相关分拣单"
+
+#. module: rent
+#: model:ir.ui.menu,name:rent.menu_rent_product
+msgid "Rent Product"
+msgstr "租借产品"
+
+#. module: rent
+#: field:rent.order.line,product_uos:0
+#: field:rent.return.line,product_uos:0
+msgid "Product UoS"
+msgstr "产品销售单位"
+
+#. module: rent
+#: code:addons/rent/stock.py:115
+#: code:addons/rent/stock.py:118
+#, python-format
+msgid "Warning!"
+msgstr "警告"
+
+#. module: rent
+#: view:rent.order:0
+msgid "Total Tax Included"
+msgstr "含税总计"
+
+#. module: rent
+#: field:rent.order,project_id:0
+msgid "Contract / Analytic"
+msgstr "辅助核算"
+
+#. module: rent
+#: view:rent.order:0
+#: view:rent.return:0
+msgid "Approve"
+msgstr "批准"
+
+#. module: rent
+#: help:rent.order,message_ids:0
+#: help:rent.return,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: rent
+#: view:rent.order:0
+#: field:rent.order,returned:0
+#: selection:rent.order,state:0
+#: selection:rent.order.line,state:0
+#: selection:rent.return.line,state:0
+msgid "Returned"
+msgstr "已归还"
+
+#. module: rent
+#: view:rent.return:0
+msgid "Note..."
+msgstr "备注"
+
+#. module: rent
+#: field:rent.order,amount_total:0
+#: view:rent.return:0
+msgid "Total"
+msgstr "总计"
+
+#. module: rent
+#: model:ir.actions.act_window,name:rent.action_pricelist_version_rent
+#: model:ir.ui.menu,name:rent.menu_pricelist_version_rent
+msgid "Pricelist Versions"
+msgstr "价格表版本"
+
+#. module: rent
+#: field:rent.order,line_id:0
+msgid "Entry Lines"
+msgstr "行"
+
+#. module: rent
+#: code:addons/rent/rent.py:85
+#: code:addons/rent/rent.py:258
+#: code:addons/rent/rent.py:269
+#: code:addons/rent/rent_return.py:43
+#, python-format
+msgid "Error!"
+msgstr "错误"
+
+#. module: rent
+#: selection:rent.order,invoice_frequency:0
+msgid "One"
+msgstr "一次性"
+
+#. module: rent
+#: view:rent.return:0
+msgid "Sales Order Lines"
+msgstr "订单行"
+
+#. module: rent
+#: model:res.groups,name:rent.group_rent_manager
+msgid "Manager"
+msgstr "经理"
+
+#. module: rent
+#: field:rent.order,client_order_ref:0
+msgid "Customer Reference"
+msgstr "客户引用"
+
+#. module: rent
+#: field:rent.return.line,product_uom_qty:0
+msgid "Return Quantity"
+msgstr "归还数量"
+
+#. module: rent
+#: view:rent.order:0
+#: field:rent.order,year:0
+#: view:rent.return:0
+#: field:rent.return,year:0
+msgid "Year"
+msgstr "每年"
+
+#. module: rent
+#: code:addons/rent/rent.py:590
+#, python-format
+msgid "Before choosing a product,\n"
+" select a customer in the sales form."
+msgstr "Before choosing a product,\n"
+" select a customer in the sales form."
+
+#. module: rent
+#: field:stock.picking,rent_state:0
+#: field:stock.picking.in,rent_state:0
+#: field:stock.picking.out,rent_state:0
+msgid "Rent State"
+msgstr "归还日期"
+
+#. module: rent
+#: view:rent.return:0
+#: field:rent.return,order_line:0
+msgid "Return Lines"
+msgstr "返还单行"
+

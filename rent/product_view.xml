@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Menu Group -->
+        <menuitem id="menu_rent_product_catalog" name="Products" parent="menu_rent_root"  sequence="10"/>
+
+        <record id="view_product_rent_form" model="ir.ui.view">
+            <field name="name">product.product.rent.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <div name="options" position="inside">
+                    <field name="is_rent" />
+                    <label for="is_rent"/>
+                </div>
+                <field name="list_price" position="after">
+                    <field name="rent_price" attrs="{'invisible': [('is_rent', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_search_form_view" model="ir.ui.view">
+            <field name="name">product.search.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <filter name="filter_to_sell" position="after">
+                   <filter string="Can be Rented" name="filter_to_rent" icon="terp-accessories-archiver-minus" domain="[('is_rent','=',1)]"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="rent_product" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_filter_to_rent":1, "default_is_rent":1}</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+        </record>
+
+        <menuitem id="menu_rent_product" name="Rent Product" parent="menu_rent_product_catalog" action="rent_product"/>
+
+    </data>
+</openerp>
+
